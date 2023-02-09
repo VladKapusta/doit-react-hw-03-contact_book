@@ -12,15 +12,18 @@ import { Modal } from './Modal/Modal';
 const KEY_LS = 'contacts';
 export class App extends Component {
   state = {
-    contacts: [{ id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' }],
+    contacts: [],
     filter: '',
     showModal: false,
   };
 
   componentDidMount() {
     const contactsLocalStorage = localStorage.getItem(KEY_LS);
+
     const parseContacts = JSON.parse(contactsLocalStorage);
-    this.setState({ contacts: parseContacts });
+    if (parseContacts) {
+      this.setState({ contacts: parseContacts });
+    }
   }
 
   componentDidUpdate() {
